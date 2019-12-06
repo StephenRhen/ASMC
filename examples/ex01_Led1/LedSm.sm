@@ -1,0 +1,29 @@
+
+%{
+   #include "led.h"
+%}
+
+%event BUTTON_PRESSED
+
+%state led_on led_off
+
+%start led_off
+
+%%
+
+led_on
+{
+   BUTTON_PRESSED led_off
+   %{
+     ledOff();
+   %} ;
+}
+
+led_off
+{
+  BUTTON_PRESSED led_on
+  %{
+    ledOn();
+  %} ;
+}
+
