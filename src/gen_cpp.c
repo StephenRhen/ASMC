@@ -29,9 +29,11 @@
 
 void gen_cpp_hdr_file(state_machine_t *sm);
 void gen_cpp_class_file(state_machine_t *sm);
-void gen_state_exit(state_t *state);
+void gen_run_method(state_machine_t *sm);
+void gen_state_next(state_t *state);
+void gen_transitions(transition_t *trans);
+void gen_entry(state_t *state);
   
-
 
 void gen_cpp(state_machine_t *sm)
 {
@@ -95,13 +97,11 @@ void gen_cpp_hdr_file(state_machine_t *sm)
   fprintf(file, "  private:\n\n");
   fprintf(file, "    // Possiable states.\n");
   fprintf(file, "    typedef enum {\n");
+  fprintf(file, "      nil = 0,\n");
   for (state_t *state = sm->state_table; state; state = state->next) {
-    fprintf(file, "      %s", state->name);
-    if (state->next) {
-      fputc(',', file);
-    }
-    fputc('\n', file);
+    fprintf(file, "      %s,\n", state->name);
   }
+  fprintf(file, "      error = -1\n");
   fprintf(file, "    } state_t;\n\n");
   fprintf(file, "    state_t state;\n");
   fprintf(file, "};\n\n");
@@ -155,40 +155,7 @@ void gen_cpp_class_file(state_machine_t *sm)
   printf("void %s::begin()\n{\n}\n\n", sm->class_name);
 
   /* The event processing code */
-  printf("%s::retstatus_t %s::run(event_t event)\n{\n",
-	 sm->class_name, sm->class_name);
-  printf("  state_t next_state;\n");
-  printf("  int handled = 0;\n\n");
-  
-  printf("  switch(state) {\n");
-
-  for (state = sm->state_table; state; state = state->next) {
-    printf("  case %s:\n\n", state->name);
-    if (state->exit) {
-      gen_state_exit(state);
-    }
-    for (trans = state->trans_list; trans; trans = trans->next) {
-      printf("    if (event == %s) {\n", trans->event->name);
-      printf("      handled = 1;\n");
-      if (trans->next_state) {
-	printf("      next_state = %s;\n", trans->next_state->name);
-      }
-      if (trans->code) {
-	printf("%s\n", trans->code);
-      }
-      printf("    }\n");
-      printf("    break;\n\n");
-    }    
-  }
-  printf("  } /* switch */\n\n");
-  printf("  if (!handled) {\n");
-  printf("    return unhandled_event;\n");
-  printf("  }\n\n");
-  printf("  if (next_state) {\n");
-  printf("    state = next_state;\n");
-  printf("  }\n\n");
-  printf("  return ok;\n");
-  printf("}\n\n");
+  gen_run_method(sm);
   
   /* end of the event processing code */
   
@@ -197,26 +164,123 @@ void gen_cpp_class_file(state_machine_t *sm)
 
 }
 
-void gen_state_exit(state_t *state)
+/* Output code for the run method to handle events. */
+void gen_run_method(state_machine_t *sm)
 {
-  int found = 0;
+  state_t *state;
+  transition_t *trans;
+  
+  printf("%s::retstatus_t %s::run(event_t event)\n{\n",
+	 sm->class_name, sm->class_name);
+  printf("  state_t next_state = error;\n\n");
+  printf("  switch(state) {\n\n");
 
-  for (transition_t *trans = state->trans_list; trans; trans = trans->next) {
-    if (trans->next_state) {
-      if (!found) {
-	found = 1;
-	printf("    /* Perform state exit actions. */\n");
-	printf("    if (");
-      }
-      else {
-	printf(" ||\n        ");
-      }
-      printf("(event == %s)", trans->event->name);
+  for (state = sm->state_table; state; state = state->next) {
+    printf("  case %s:\n\n", state->name);
+
+    /* Determine next state */
+    gen_state_next(state);
+
+    printf("    if (next_state == error)\n");
+    printf("      return unhandled_event;\n\n");
+
+    /* Perform exit actions */
+    if (state->exit) {
+      printf("    /* Perform exit actions */\n");
+      printf("    if (next_state != nil) {\n");
+      printf("      %s\n", state->exit);
+      printf("    }\n\n");
     }
-  }
-  printf(") {\n");
 
-  if (found) {
-    printf("%s\n    }\n\n", state->exit);
+    gen_transitions(state->trans_list);
+ 
+    printf("    break;\n\n");
+  }
+  printf("  } /* switch (state) */\n\n");
+  printf("  if (next_state) {\n");
+  
+  gen_entry(sm->state_table);
+  
+  printf("    state = next_state;\n");
+  printf("  }\n\n");
+  printf("  return ok;\n");
+  printf("}\n\n");
+
+}
+
+/* Generate code to determine next state
+ *
+ *   TODO: Add default transitions
+ *         Add guards
+ *         Combine Common states
+ */
+void gen_state_next(state_t *state)
+{
+  printf("    /* Determine next state. */\n");
+  printf("    switch (event) {\n");
+  
+  for (transition_t *trans = state->trans_list; trans; trans = trans->next) {
+    printf("      case %s:\n", trans->event->name);
+    if (!trans->next_state) {
+      printf("        next_state = nil;\n");
+    }
+    else {
+      printf("        next_state = %s;\n", trans->next_state->name);
+    }
+    printf("        break;\n");
+  }
+  printf("      default:\n");
+  printf("        ; /* empty */\n");
+  printf("    } /* switch (event) */\n\n");
+}
+
+void gen_transitions(transition_t *trans)
+{
+
+  /* Skip transitions with no actions */
+  while (trans && !trans->code)
+    trans = trans->next;
+
+  if (trans) {
+    printf("    /* Perform actions for the transition */\n");
+    printf("    switch (event) {\n");
+
+    while(trans) {
+      if (trans->code) {
+	printf("      case %s:\n", trans->event->name);
+	printf("        %s\n", trans->code);
+	printf("        break;\n");
+      }
+      trans = trans->next;
+    }
+    printf("      default:\n");
+    printf("        ; /* empty */\n");
+    printf("    } /* switch(event) */\n\n");
+  } 
+}
+
+void gen_entry(state_t *state)
+{
+
+  /* Skip states with no entry actions */
+  while (state && !state->entry)
+    state = state->next;
+
+  if (state) {
+    printf("    /* Preform entry actions for the next state */\n");
+    printf("    switch (next_state) {\n");
+
+    while (state) {
+      if (state->entry) {
+	printf("      case %s:\n", state->name);
+	printf("        %s\n", state->entry);
+	printf("        break;\n");
+      }
+      state = state->next;
+    }
+    printf("      default:\n");
+    printf("        ; /* empty */\n");
+    printf("    } /* switch (next_state) */\n\n");
   }
 }
+

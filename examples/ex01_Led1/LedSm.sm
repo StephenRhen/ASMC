@@ -1,6 +1,6 @@
 
 %{
-   #include "led.h"
+#include <Arduino.h>
 %}
 
 %event BUTTON_PRESSED
@@ -15,7 +15,7 @@ led_on
 {
    BUTTON_PRESSED led_off
    %{
-     ledOff();
+     digitalWrite(LED_BUILTIN, LOW);
    %} ;
 }
 
@@ -23,7 +23,7 @@ led_off
 {
   BUTTON_PRESSED led_on
   %{
-    ledOn();
+    digitalWrite(LED_BUILTIN, HIGH);
   %} ;
 }
 
