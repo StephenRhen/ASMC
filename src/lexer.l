@@ -52,9 +52,7 @@
                    code_ptr = code_buf;
                    BEGIN(code);
                  }
-<code>^[ \t]*\n
-<code>^[ \t]+
-<code>\n         {*code_ptr++ = ' '; }
+<code>\n         {*code_ptr++ = '\n'; }
 <code>.          { *code_ptr++ = yytext[0]; }
 
 <code>"%}"       {

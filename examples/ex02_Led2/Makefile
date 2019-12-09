@@ -1,9 +1,21 @@
 
 include ../../config.mk
 
-# Specify the sources, arduino make will not pick it
-# up on a clean build.
-LOCAL_CPP_SRCS = Led2Sm.cpp
+EXAMPLE = Led2
+
+SKETCH = ex02_Led2.ino
+SKETCH_OBJ = $(addsuffix .o,$(SKETCH))
+
+SM_CLASS = $(addsuffix Sm,$(EXAMPLE))
+SM_SRC = $(addsuffix .sm,$(SM_CLASS))
+SM_TRACEFILE = $(addsuffix .tf,$(SM_CLASS))
+SM_CPP_FILE = $(addsuffix .cpp,$(SM_CLASS))
+SM_INCLUDE = $(addsuffix .h,$(SM_CLASS))
+
+# Specify the sources, the arduino make system can not find
+# the state machine class file on a clean build because
+# it doesn't exist
+LOCAL_CPP_SRCS = $(SM_CPP_FILE)
 
 # If you specify the sources you need to manually provide
 # the libraries.
@@ -11,12 +23,10 @@ ARDUINO_LIBS = Button
 
 include $(ARDMK_DIR)/Arduino.mk
 
-all: Led2Sm.cpp Led2Sm.h
+$(OBJDIR)/$(SKETCH_OBJ):  $(SM_INCLUDE)
 
-$(OBJDIR)/led.ino.o: Led2Sm.h
-
-Led2Sm.cpp Led2Sm.h: Led2Sm.sm $(ASMC)
-	$(ASMC) -tLed2Sm.tf $<
+$(SM_CPP_FILE) $(SM_INCLUDE): $(SM_SRC) $(ASMC)
+	$(ASMC) -t$(SM_TRACEFILE) $<
 
 clean::
-	rm -f Led2Sm.cpp Led2Sm.h Led2Sm.tf *~
+	rm -f $(SM_CPP_FILE) $(SM_INCLUDE) $(SM_TRACEFILE) *~

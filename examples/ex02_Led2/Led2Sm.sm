@@ -1,6 +1,6 @@
 
 %{
-   #include "led.h"
+   #include "Led2.h"
 %}
 
 %event BUTTON_PRESSED
