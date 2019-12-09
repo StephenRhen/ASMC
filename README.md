@@ -14,7 +14,7 @@ event driven state machines
 User code can be executed on transition events as well as entry or exit
 from a state.
 
-- ###State Variables
+- ### State Variables
 User defined state variables are supported.
 
 ## Missing
