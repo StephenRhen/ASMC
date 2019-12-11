@@ -39,19 +39,25 @@ int yylex();
 }
 
 %token EVENT STATE START NIL PUSH POP
-%token <string> ID ENTRY EXIT CODE_BLOCK 
+%token <string> ID ENTRY EXIT CODE_BLOCK GUARD
 %token DCOLON DPERCENT
 
 %type <state> state_ref state_ref_or_nil
 %type <event> event_ref
 %type <trans> trans trans_list trans_list_or_nil
-%type <string> entry exit raw_code
+%type <string> entry exit raw_code guard
 
 %%
 
 fms:  header DPERCENT rules ;
 
-header: %empty | raw_code option_list { add_first_code($1); } ;
+header: %empty
+| hdr_code option_list class_decl_code
+;
+
+hdr_code: raw_code { add_hdr_code($1); } ;
+
+class_decl_code: raw_code { add_class_decl_code($1); } ;
 
 option_list: option | option_list option ;
 
@@ -69,15 +75,12 @@ rules: state_def_list ;
 state_def_list: state_def | state_def_list state_def ;
 
 state_def: state_ref entry exit '{' trans_list_or_nil '}'
-{
-  /* Need to clean up if state ref is null, move code
-   * to function. */
-  if ($1) {
+  {
     $1->entry = $2;
     $1->exit = $3;
     $1->trans_list = $5;
   }
-} ;
+;
 
 entry: %empty { $$ = NULL; }
   | ENTRY CODE_BLOCK { $$ = strdup($2); }
@@ -88,15 +91,21 @@ exit: %empty { $$ = NULL; }
 ;
 
 trans_list_or_nil: %empty { $$ = NULL; }
-  | trans_list { $$ = $1; }
+| trans_list { $$ = $1; }
 ;
 
 trans_list: trans { $$ = $1; }
-  | trans_list trans { $$ = trans_add($1, $2); }
+| trans_list trans { trans_add($1, $2); $$ = $1; }
 ;
 
-trans: event_ref state_ref_or_nil raw_code ';'
-    { $$ = trans_create($1, $2, $3); }
+trans: event_ref guard state_ref_or_nil raw_code ';'
+{
+  $$ = trans_create($1, $2, $3, $4);
+}
+;
+
+guard:   %empty  { $$ = NULL; }
+| GUARD { $$ = strdup($1); }
 ;
 
 raw_code: %empty { $$ = NULL; }

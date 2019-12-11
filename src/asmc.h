@@ -42,8 +42,9 @@ typedef struct state {
 
 typedef struct transition {
   event_t *event;
+  const char *guard;
   state_t *next_state;
-  char *code;
+  const char *code;
   struct transition *next;
 } transition_t;
 
@@ -62,41 +63,51 @@ typedef struct state_machine
   state_t *state_table;    /* List of states */
   state_t *start_state;    /* Initial state for the state machine. */
 
-  char *first_code;        /* Literal code to be included in the code file
-                            * prior to the generated code */
+  const char *hdr_code;    /* Literal code to be included in the class header file
+                            * prior to the generated code. Used to specify any 
+			    * include files required by the class */
+  const char *class_decl_code;   /* Code that is inserted as private members of the
+                            * state machine class. Used to add state variables
+			    * and member functions to the class. */
 } state_machine_t;
 
+/* Add header code */
+void add_hdr_code(const char *code);
+
+/* Add private members to the class */
+void add_class_decl_code(const char *code);
 
 /* Sets the start state */
-void set_start_state(char *name);
-
-void add_first_code(const char *code);
+void set_start_state(const char *name);
   
 /* Find an event by name returning NULL if the event isn't found */
-event_t *event_find(char *name);
+event_t *event_find(const char *name);
 
 /* Like event_find(), but prints an error message if the event
  * isn't found */
-event_t *event_lookup(char *name);
+event_t *event_lookup(const char *name);
 
 /* Add an event to the event table */
-void event_add(char *name);
+void event_add(const char *name);
 
-/* Find an state by name returning NULL if the event isn't found */
-state_t *state_find(char *name);
+/* Find an state by name returning NULL if the state isn't found */
+state_t *state_find(const char *name);
 
 /* Like state_find(), but prints an erro message if the state isn't
  * found */
-state_t *state_lookup(char *name);
+state_t *state_lookup(const char *name);
 
 /* Add an state to the state table */
-void state_add(char *name);
+void state_add(const char *name);
 
 /* Add a transition */
-transition_t *trans_add(transition_t *list, transition_t *trans);
+void trans_add(transition_t *list, transition_t *trans);
 
 /* Create a transition */
-transition_t *trans_create(event_t *event, state_t *state, char *code);
+transition_t *trans_create(event_t *event,
+			 const char *guard,
+			 state_t *state,
+			 const char *code);
 
 /* Generate c++ code */
 void gen_cpp(state_machine_t *sm);

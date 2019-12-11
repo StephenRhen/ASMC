@@ -1,0 +1,61 @@
+
+%{
+#include <Arduino.h>
+#include "Blink2.h"
+%}
+
+%event BUTTON_PRESSED TIMEOUT
+
+%state led_off led_blink_on led_blink_off 
+
+%start led_off
+
+%{
+    int blink_cnt;
+%}
+
+%%
+
+led_off
+%entry
+  %{
+    blink_cnt = 0;
+  %}
+{
+   BUTTON_PRESSED led_blink_on;
+}
+
+led_blink_on
+%entry
+  %{
+    startTimer(500);
+    blink_cnt++;
+    digitalWrite(LED_BUILTIN, HIGH);
+  %}
+%exit
+  %{
+    stopTimer();
+    digitalWrite(LED_BUILTIN, LOW);
+  %}
+{
+  BUTTON_PRESSED led_off;
+  TIMEOUT [ blink_cnt >= 4 ] led_off;
+  TIMEOUT led_blink_off;
+}
+
+led_blink_off
+%entry
+  %{
+    startTimer(500);
+  %}
+%exit
+  %{
+    stopTimer();
+  %}
+{
+  BUTTON_PRESSED led_off;
+  TIMEOUT led_blink_on;
+}
+
+
+

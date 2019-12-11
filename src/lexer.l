@@ -30,8 +30,8 @@
 
 %option yylineno
 
-%x COND
 %x code
+%x guard
 
 %%
 
@@ -52,7 +52,7 @@
                    code_ptr = code_buf;
                    BEGIN(code);
                  }
-<code>\n         {*code_ptr++ = '\n'; }
+<code>\n         { *code_ptr++ = '\n'; }
 <code>.          { *code_ptr++ = yytext[0]; }
 
 <code>"%}"       {
@@ -62,11 +62,19 @@
                    return CODE_BLOCK;
                  }
 
-
-                 /* Return Conditional expressions verbatim */
-\[               { BEGIN COND; printf("<cond>"); }
-<COND>[.\n]*     printf("%s", yytext);
-<COND>\]         { printf("<end cond>"); BEGIN 0; }
+    /* Return Conditional expressions verbatim */
+\[               { 
+                   code_ptr = code_buf;
+                   BEGIN(guard);
+                 }
+<guard>\]        { 
+                   *code_ptr = '\0';
+                   BEGIN(INITIAL);
+                   yylval.string = code_buf;
+                   return GUARD;
+                 }
+<guard>\n        { *code_ptr++ = '\n'; }
+<guard>.         { *code_ptr++ = yytext[0]; }
 
 
 %event            return EVENT;

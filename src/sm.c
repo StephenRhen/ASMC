@@ -30,18 +30,30 @@
 /* State machine data */
 state_machine_t sm;
 
+void add_hdr_code(const char *code)
+{
+    sm.hdr_code = code;
+}
+
+void add_class_decl_code(const char *code)
+{
+    sm.class_decl_code = code;
+}
+
 /* Sets the start state */
-void set_start_state(char *name)
+void set_start_state(const char *name)
 {
   state_t *state;
 
-  if (state = state_lookup(name)) {
+  if (state = state_lookup(name))
     sm.start_state = state;
-  }
+  else
+    yyerror("Only one %start option allowed\n");
+  
 }
 
 /* Find an event by name returning NULL if the event isn't found */
-event_t *event_find(char *name)
+event_t *event_find(const char *name)
 {
   event_t *event;
   for (event = sm.event_table; event; event = event->next) {
@@ -53,7 +65,7 @@ event_t *event_find(char *name)
 
 /* Like event_find(), but prints an error message if the event
  * isn't found */
-event_t *event_lookup(char *name)
+event_t *event_lookup(const char *name)
 {
   event_t *event = event_find(name);
   if (!event) {
@@ -63,9 +75,9 @@ event_t *event_lookup(char *name)
 }
 
 /* Add an event to the event table */
-void event_add(char *name)
+void event_add(const char *name)
 {
-  event_t *event;
+  event_t *event, **prev;
   
   /* Check for duplicates */
   if (event_find(name) != NULL) {
@@ -75,13 +87,13 @@ void event_add(char *name)
     trace("Adding event %s", name);
     event = malloc(sizeof(event_t));
     event->name = strdup(name);
-    event->next = sm.event_table;
-    sm.event_table = event;
+    for (prev = &sm.event_table; *prev; prev = &(*prev)->next);
+    (*prev) = event;
   }
 }
 
 /* Find an state by name returning NULL if the event isn't found */
-state_t *state_find(char *name)
+state_t *state_find(const char *name)
 {
   state_t *state;
   for (state = sm.state_table; state; state = state->next) {
@@ -93,7 +105,7 @@ state_t *state_find(char *name)
 
 /* Like state_find(), but prints an erro message if the state isn't
  * found */
-state_t *state_lookup(char *name)
+state_t *state_lookup(const char *name)
 {
   state_t *state = state_find(name);
   if (!state) {
@@ -103,9 +115,9 @@ state_t *state_lookup(char *name)
 }
 
 /* Add an state to the state table */
-void state_add(char *name)
+void state_add(const char *name)
 {
-  state_t *state;
+  state_t *state, **prev;
   
   /* Check for duplicates */
   if (state_find(name) != NULL) {
@@ -115,39 +127,52 @@ void state_add(char *name)
     trace("Adding state %s", name);
     state = malloc(sizeof(state_t));
     state->name = strdup(name);
-    state->next = sm.state_table;
-    sm.state_table = state;
+    for (prev = &sm.state_table; *prev; prev = &(*prev)->next);
+    *prev = state;
   }
 }
 
-/* Link a transition onto the list */
-transition_t *trans_add(transition_t *list, transition_t *trans)
+/* Add a transition */
+void trans_add(transition_t *list, transition_t *trans)
 {
-  trans->next = list;
-  return trans;
-}
+  if (!list) {
+    list = trans;
+  }
+  else {
+    while(list->next)
+      list = list->next;
+
+    if ((list->event == trans->event) && !list->guard) {
+      yyerror("Transition for event %s not reached\n");
+      free(trans);
+    }
+    else {
+      list->next = trans;
+    }
+  }
+} 
 
 /* Create a transition */
-transition_t *trans_create(event_t *event, state_t *state, char *code)
+transition_t *trans_create(event_t *event,
+			  const char *guard,
+			  state_t *state,
+			  const char *code)
 {
-  transition_t *trans = malloc(sizeof(transition_t));
+  transition_t *trans, **prev;
   char *state_name = NULL;
+
+  trans = malloc(sizeof(transition_t));
   trans->event = event;
+  trans->guard = guard;
   trans->next_state = state;
-  if (code) {
-    trans->code = strdup(code);
-  }
-  if (state) {
+  trans->code = code;
+
+  if (state)
     state_name = state->name;
-  }
-  trace("Creating transition event %s, next state %s \n    code:%s",
-	event->name, state_name, code);
+  
+  trace("Adding transition for event %s, guard %s\n next state %s code:%s",
+	event->name, guard, state_name, code);
+
   return trans;
 }
-
-void add_first_code(const char *code)
-{
-  sm.first_code = strdup(code);
-}
-
 
