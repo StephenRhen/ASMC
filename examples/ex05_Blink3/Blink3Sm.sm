@@ -1,0 +1,62 @@
+
+%{
+#include <Arduino.h>
+#include "Blink3.h"
+%}
+
+%event COUNT TIMEOUT
+
+%state led_off led_blink_on led_blink_off 
+
+%start led_off
+
+%{
+    int blink_cnt;
+%}
+
+%%
+
+led_off
+%entry
+  %{
+    blink_cnt = 0;
+  %}
+{
+   COUNT led_blink_on
+     %{
+        blink_cnt = data;
+     %} ;
+}
+
+led_blink_on
+%entry
+  %{
+    startTimer(500);
+    blink_cnt--;
+    digitalWrite(LED_BUILTIN, HIGH);
+  %}
+%exit
+  %{
+    stopTimer();
+    digitalWrite(LED_BUILTIN, LOW);
+  %}
+{
+  TIMEOUT [ blink_cnt == 0 ] led_off;
+  TIMEOUT led_blink_off;
+}
+
+led_blink_off
+%entry
+  %{
+    startTimer(500);
+  %}
+%exit
+  %{
+    stopTimer();
+  %}
+{
+  TIMEOUT led_blink_on;
+}
+
+
+

@@ -93,7 +93,7 @@ void gen_cpp_hdr_file(state_machine_t *sm)
   fprintf(file, "    } retstatus_t;\n\n");
   fprintf(file, "    %s();\n", sm->class_name);
   fprintf(file, "    void begin();\n");
-  fprintf(file, "    retstatus_t run(event_t event);\n\n");
+  fprintf(file, "    retstatus_t run(event_t event, int data = 0);\n\n");
   fprintf(file, "  private:\n\n");
   fprintf(file, "    // Possiable states.\n");
   fprintf(file, "    typedef enum {\n");
@@ -170,7 +170,7 @@ void gen_run_method(FILE *f, state_machine_t *sm)
   state_t *state;
   transition_t *trans;
   
-  fprintf(f, "%s::retstatus_t %s::run(event_t event)\n{\n",
+  fprintf(f, "%s::retstatus_t %s::run(event_t event, int data)\n{\n",
 	  sm->class_name, sm->class_name);
   fprintf(f, "  state_t next_state = error;\n\n");
   fprintf(f, "  switch(state) {\n\n");

@@ -6,39 +6,41 @@
 
 #include <Button.h>
 
-#include "Blink1Sm.h"
-#include "Blink1.h"
+#include "Blink3Sm.h"
+#include "Blink3.h"
 
-// For some reason the Arduino make tools can't find limits.h when
-// building from the command line.
+// For some reason the Arduino command line make tools can't find limits.h
 #define ULONG_MAX   4294967295
 
 #define BUTTON_PIN 2
 
-Blink1Sm sm;
-
-Button button(BUTTON_PIN);
+Blink3Sm sm;
 
 unsigned long timeout = ULONG_MAX;
 
-void setup() {
-
+void setup()
+{
   pinMode(LED_BUILTIN, OUTPUT);
-  button.begin();
+  Serial.begin(9600);
   sm.begin();
 }
 
-void loop() {
-
-  if (button.pressed()) {
-    // Send event to state machine
-    sm.run(sm.BUTTON_PRESSED);
-  }
+void loop()
+{
   if (checkTimer()) {
      sm.run(sm.TIMEOUT);
   }
-
 }
+
+void serialEvent()
+{
+  while(Serial.available()) {
+    int ch = Serial.read();
+    if (ch >= '1' && ch <= '9') {
+      sm.run(sm.COUNT, ch - '0');
+    }
+  }
+}  
 
 void startTimer(unsigned long msecs)
 {
