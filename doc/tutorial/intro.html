@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction</title>
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <h1>Introduction</h1>
+    <p>The state machine compiler processes an input file describing the state
+      machine and produces a c++ class which impliments the state machine.
+      The output is two files. A c++ header with a <bold>.h</bold> extention
+      and a c++ code file with a <bold>.cpp</bold> extenstion. All keywords
+      in the input file are proceeded by a %, such as %class. User supplied
+      code is enclosed between %{ and %} and is copied to the output file
+      verbatum. The input file is divided into three sections seperated by
+      %%. A header section containing options, a rules section containing
+      descriptions of the state transitions and an optional code section.
+      If the code section is omitted the final %% seperator is not required.</p>
+    <pre>
+[header]
+%%
+[rules]
+%%
+[code]
+    </pre>
+    <p>To create the state machine class file it is only necessary to run the
+      compiler on the description file. By convention the state machine
+      description files are given a .sm extension. The compiler takes an
+      optional argument to produce additional trace output as the state
+      machine description is parsed. This is mostly only useful as a developer
+      tool to debug the compiler.</p>
+    <pre>
+ascm [-t[tracefile]] infile
+    </pre>    
+    
+  </body>
+</html>

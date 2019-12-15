@@ -1,6 +1,4 @@
-
-
-SUBDIRS = doc src examples
+SUBDIRS = tutorial
 
 $(MAKECMDGOALS): subdirs
 
@@ -8,9 +6,6 @@ subdirs: $(SUBDIRS)
 
 $(SUBDIRS):
 	$(MAKE) -C $@ $(MAKECMDGOALS)
-
-# Make sure the compiler gets built first
-examples: src
 
 clean:
 	rm -f *~

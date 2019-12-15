@@ -1,0 +1,59 @@
+
+p {
+    margin-left: 20px;
+    text-indent: 20px;
+    width: 720px;
+}
+
+pre {
+    padding-left: 40px;
+    font-family: "Courier New";
+}
+
+header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 35px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+ /* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Stay in place */
+    /* z-index: 1; /* Stay on top */
+    top: 140px; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
