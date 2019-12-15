@@ -1,4 +1,4 @@
-#Led 1
+# Led 1
 
 The first example is an extremly simple state machine with only two
 states and a single event. Connect a push button switch between D2 of
