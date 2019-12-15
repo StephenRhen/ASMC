@@ -5,8 +5,7 @@ states and a single event. Connect a push button switch between D2 of
 the processor board and ground. When the button is pressed the on-board
 LED will turn on. When it is pressed again the LED will turn off.
 
-![Led1 State Diagram](./Led1_state_diagram.svg)
-<image src=./Led1_state_diagram.svg>
+<img src="./Led1_state_diagram.svg" width="600px">
     
 In the state diagram the states are represented as circles and the
 transitions are arrows connecting the circles. By convention state
@@ -18,16 +17,14 @@ The header portion of the description file specifies code to be
 included at the top of the output .h file along with options defining
 the state machine
 
-'''
-%{
-#include <Arduino.h>;
-%}
+    %{
+    #include <Arduino.h>;
+    %}
 
-%event BUTTON_PRESSED
-%state led_on led_off
-%class Led1Sm
-%start led_off
-'''
+    %event BUTTON_PRESSED
+    %state led_on led_off
+    %class Led1Sm
+    %start led_off
     
 The code block at the start of the header section should be the first
 thing in the section. This block is copied verbatum to the begining of
@@ -48,26 +45,20 @@ the first state given in the rules section will be used as the start
 The next section defines the state transitions and attaches user code
 to the transitions.
 
-'''
-%%
-led_on
-{
-   BUTTON_PRESSED led_off
-   %{
-     digitalWrite(LED_BUILTIN, LOW);
-   %} ;
-}
-led_off
-{
-  BUTTON_PRESSED led_on
-  %{
-    digitalWrite(LED_BUILTIN, HIGH);
-  %} ;
-}
-'''
+
+    %%
+    led_on
+    {
+      BUTTON_PRESSED led_off
+      %{
+       digitalWrite(LED_BUILTIN, LOW);
+      %} ;
+    }
+    led_off
+    {
+      BUTTON_PRESSED led_on
+      %{
+        digitalWrite(LED_BUILTIN, HIGH);
+      %} ;
+    }
     
-      
-    
-      
-  </body>
-</html>
