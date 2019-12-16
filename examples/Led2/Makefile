@@ -1,9 +1,9 @@
 
 include ../../config.mk
 
-EXAMPLE = Blink2
+EXAMPLE = Led2
 
-SKETCH = ex04_Blink2.ino
+SKETCH = $(addsuffixex .ino,$(EXAMPLE))
 SKETCH_OBJ = $(addsuffix .o,$(SKETCH))
 
 SM_CLASS = $(addsuffix Sm,$(EXAMPLE))

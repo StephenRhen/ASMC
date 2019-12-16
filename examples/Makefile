@@ -1,7 +1,6 @@
 
 
-SUBDIRS = ex01_Led1 ex02_Led2 ex03_Blink1 ex04_Blink2 \
-          ex05_Blink3
+SUBDIRS = Led1 Led2 Blink1 Blink2 Blink3
 
 $(MAKECMDGOALS): subdirs
 

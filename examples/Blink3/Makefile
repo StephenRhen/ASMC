@@ -3,7 +3,7 @@ include ../../config.mk
 
 EXAMPLE = Blink3
 
-SKETCH = ex04_Blink3.ino
+SKETCH = $(addsuffix .ino,$(EXAMPLE))
 SKETCH_OBJ = $(addsuffix .o,$(SKETCH))
 
 SM_CLASS = $(addsuffix Sm,$(EXAMPLE))

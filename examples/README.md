@@ -4,11 +4,11 @@
 
 Several example files are provide to progressively introduce `asmc` features.
 
-* ## [Led1](./ex01_Led1/README.md)
+* ## [Led1](./Led1/README.md)
 Introduction to the complier, it's usage and file format. Impliments simple state
 machine using a push button to control the onboard LED
 
-* ## Led2
+* ## [Led2](./Led2/README.md)
 The same functionality as Led1, but uses state exit and entry actions to
 control the LED.
 
