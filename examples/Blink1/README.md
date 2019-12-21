@@ -2,17 +2,17 @@
 
  In this example the LED blinks when the button is pressed. It demonstrates
  how entry, exit and transitions can be mixed to create an effective state
- machine. It also impliments a simple timer showing how to call functions
+ machine. It also implements a simple timer showing how to call functions
  in your sketch from the state machine.
 
-<img src="./Blink1_state_diagram.svg" width600px">
+<img src="./Blink1_state_diagram.svg" width="600px">
 
 ## The State Machine Description
 
 For the state machine to make use of the timer functions it is necessary to
-provide it with the necessary function prototypes. Theese are in the header 
+provide it with the necessary function prototypes. These are in the header 
 file `Blink1.h` which needs to be included. The contents of this header file
-will be discused later. Also we have added the additional state and event 
+will be discussed later. Also we have added the additional state and event 
 to the header section of the description file.
 
 ```
@@ -40,7 +40,7 @@ and transition actions. The LED should light when ever the state is entered
 and turn off when ever the state is left. The state machine should only
 remain in this state for 500ms, after which time it should move to the 
 `led_blink_off' state. If the button is pressed the timer should be 
-cancled and the state machine should move to the `led_off` state.
+canceled and the state machine should move to the `led_off` state.
 
 ```
 led_blink_on
@@ -83,8 +83,8 @@ led_blink_off
 ## Arduino Sketch
 
 The complete sketch is in the file `Blink1.ino`, I will only consider those
-sections that a pertinate to this example. The biggest addition is the timer
-routines. First it is necessary to add a variable holding the experation
+sections that a pertinite to this example. The biggest addition is the timer
+routines. First it is necessary to add a variable holding the expiration
 time of the timer.
 
 ```c++
@@ -92,7 +92,7 @@ time of the timer.
 unsigned long timeout = ULONG_MAX;
 ```
 
-The timer implimentation is very simple. 
+The timer implementation is very simple. 
 
 ```c++
 // Start the timer and set it to expire msecs milliseconds from now.
@@ -101,7 +101,7 @@ void startTimer(unsigned long msecs)
   timeout = millis() + msecs;
 }
 
-// Effectivally stop the timer by setting it to expire 50 days from
+// Effectively stop the timer by setting it to expire 50 days from
 // now. 
 void stopTimer()
 {

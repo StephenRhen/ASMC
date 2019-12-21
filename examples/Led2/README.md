@@ -4,7 +4,7 @@ This example functions the same as the [Led1](./Led1/README.md) except the
 user defined code has been moved from the transition to state entry and exit
 actions.
 
-<img src="./Led2_state_diagram.svg" width600px">
+<img src="./Led2_state_diagram.svg" width="600px">
 
 Any state can have code that will be executed whenever a transition causes
 the state to be entered or left. These actions are shown in side the circle
