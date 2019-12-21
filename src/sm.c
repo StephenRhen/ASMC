@@ -40,6 +40,17 @@ void add_class_decl_code(const char *code)
     sm.class_decl_code = code;
 }
 
+/* Sets the class name */
+void set_class_name(const char *name)
+{
+  if (sm.class_name) {
+    yyerror("Only one class name option permitted\n");
+  }
+  else {
+    sm.class_name = strdup(name);
+  } 
+}
+    
 /* Sets the start state */
 void set_start_state(const char *name)
 {

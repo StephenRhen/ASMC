@@ -1,9 +1,8 @@
 //
-//  Simplest state machine example. The state machine contains two states.
-//  One for the LED on and one for the LED off. Pressing the button will
-//  toggle
-//  between the two states.
-
+//  This state machine demnostrates how to add variables to a state
+//  machine. It is similar to Blink1 but the only LED blinks four times
+//  when the button has been pressed.
+// 
 
 #include <Button.h>
 
@@ -12,7 +11,9 @@
 
 // For some reason the Arduino make tools can't find limits.h when
 // building from the command line.
+#ifndef ULONG_MAX
 #define ULONG_MAX   4294967295
+#endif
 
 #define BUTTON_PIN 2
 

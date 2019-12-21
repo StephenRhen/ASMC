@@ -119,7 +119,7 @@ For our example the command is:
 
 which will create the two files `Led1Sm.h` and `Led1Sm.cpp`.
 
-## The Arduino Sketch File
+## Arduino Sketch
 
 After creating the state machine class files open the Arduino IDE and create
 a new sketch and save it as Led1. Goto the Sketch menu and add the two

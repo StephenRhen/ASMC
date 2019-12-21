@@ -38,8 +38,9 @@ int yylex();
   struct transition *trans;
 }
 
-%token EVENT STATE START NIL PUSH POP
-%token <string> ID ENTRY EXIT CODE_BLOCK GUARD
+
+%token CLASS ENTRY EVENT EXIT START STATE NIL PUSH POP
+%token <string> ID CODE_BLOCK GUARD
 %token DCOLON DPERCENT
 
 %type <state> state_ref state_ref_or_nil
@@ -61,7 +62,8 @@ class_decl_code: raw_code { add_class_decl_code($1); } ;
 
 option_list: option | option_list option ;
 
-option:   EVENT event_list
+option:   CLASS ID { set_class_name($2); }
+        | EVENT event_list
         | STATE state_list
         | START ID { set_start_state($2); }
 ;
@@ -95,10 +97,10 @@ trans_list_or_nil: %empty { $$ = NULL; }
 ;
 
 trans_list: trans { $$ = $1; }
-| trans_list trans { trans_add($1, $2); $$ = $1; }
+| trans_list ',' trans { trans_add($1, $3); $$ = $1; }
 ;
 
-trans: event_ref guard state_ref_or_nil raw_code ';'
+trans: event_ref guard state_ref_or_nil raw_code
 {
   $$ = trans_create($1, $2, $3, $4);
 }

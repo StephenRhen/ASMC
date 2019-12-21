@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="28cm" height="16cm" viewBox="158 102 542 310" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="159.5" y="103.804" width="540" height="307.696"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="159.5" y="103.804" width="540" height="307.696"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="429.5" y="261.527">
+      <tspan x="429.5" y="261.527"></tspan>
+    </text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="275.433" cy="263.869" rx="79.0673" ry="77.9358"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="275.433" cy="263.869" rx="79.0673" ry="77.9358"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="275.433" y="267.744">
+      <tspan x="275.433" y="267.744"></tspan>
+    </text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="592.567" cy="264.902" rx="70.0673" ry="69.5978"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="592.567" cy="264.902" rx="70.0673" ry="69.5978"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="592.567" y="268.777">
+      <tspan x="592.567" y="268.777"></tspan>
+    </text>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 536.44,208.538 A 143.79,143.79 0 0 0 331.342,208.76"/>
+    <polygon style="fill: #000000" points="541.564,213.994 531.253,209.672 536.674,208.307 538.835,203.152 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="541.564,213.994 531.253,209.672 536.674,208.307 538.835,203.152 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 338.889,325.107 A 157.72,157.72 0 0 0 543.022,314.115"/>
+    <polygon style="fill: #000000" points="333.033,320.44 343.868,323.198 338.707,325.345 337.328,330.763 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="333.033,320.44 343.868,323.198 338.707,325.345 337.328,330.763 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="431" y="158">
+    <tspan x="431" y="158">BUTTON_PRESSED</tspan>
+  </text>
+  <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="275.933" y="243.869">
+    <tspan x="275.933" y="243.869">digitalWrite(LED_BUILTIN, LOW);</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="254" y="218.5">
+    <tspan x="254" y="218.5">led_off</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="582" y="264">
+    <tspan x="582" y="264">led_on</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="450" y="350">
+    <tspan x="450" y="350"></tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="436" y="373">
+    <tspan x="436" y="373">BUTTON_PRESSED</tspan>
+  </text>
+  <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="275.933" y="293.869">
+    <tspan x="275.933" y="293.869">digitalWrite(LED_BUILTIN, HIGH);</tspan>
+  </text>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="201.365" y1="263.869" x2="275.433" y2="263.869"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="349.5" y1="263.869" x2="275.433" y2="263.869"/>
+</svg>

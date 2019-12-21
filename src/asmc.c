@@ -78,13 +78,17 @@ int main(int argc, char **argv)
   sm.infile_basename = strdup(basename(cp));
   free(cp);
 
-  sm.class_name = strdup(sm.infile_basename);
-  if (cp = strchr(sm.class_name, '.')) {
-    *cp = '\0';
-  }
-
   if (yyparse() || error_cnt) {
     fprintf(stderr, "Error parsing input file %s\n", sm.infile_name);
+    exit(EXIT_FAILURE);
+  }
+
+  /* Set the default class name if it wasn't specified in the input file. */
+  if (!sm.class_name) {
+    sm.class_name = strdup(sm.infile_basename);
+    if (cp = strchr(sm.class_name, '.')) {
+      *cp = '\0';
+    }
   }
 
   gen_cpp(&sm);

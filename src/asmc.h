@@ -77,6 +77,9 @@ void add_hdr_code(const char *code);
 /* Add private members to the class */
 void add_class_decl_code(const char *code);
 
+/* Sets the class name */
+void set_class_name(const char *name);
+
 /* Sets the start state */
 void set_start_state(const char *name);
   

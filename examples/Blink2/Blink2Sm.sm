@@ -5,9 +5,7 @@
 %}
 
 %event BUTTON_PRESSED TIMEOUT
-
 %state led_off led_blink_on led_blink_off 
-
 %start led_off
 
 %{
@@ -22,7 +20,7 @@ led_off
     blink_cnt = 0;
   %}
 {
-   BUTTON_PRESSED led_blink_on;
+   BUTTON_PRESSED led_blink_on
 }
 
 led_blink_on
@@ -38,9 +36,9 @@ led_blink_on
     digitalWrite(LED_BUILTIN, LOW);
   %}
 {
-  BUTTON_PRESSED led_off;
-  TIMEOUT [ blink_cnt >= 4 ] led_off;
-  TIMEOUT led_blink_off;
+  BUTTON_PRESSED led_off,
+  TIMEOUT [ blink_cnt >= 4 ] led_off,
+  TIMEOUT led_blink_off
 }
 
 led_blink_off
@@ -53,9 +51,7 @@ led_blink_off
     stopTimer();
   %}
 {
-  BUTTON_PRESSED led_off;
-  TIMEOUT led_blink_on;
+  BUTTON_PRESSED led_off,
+  TIMEOUT led_blink_on
 }
-
-
 

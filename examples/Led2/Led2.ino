@@ -1,8 +1,6 @@
 //
-//  Simplest state machine example. The state machine contains two states.
-//  One for the LED on and one for the LED off. Pressing the button will
-//  toggle
-//  between the two states.
+//  The same state machine as Led1, but move the user code from the
+//  transitions to demonstrate the state %entry and %exit features.
 
 #include <Button.h>
 
@@ -28,12 +26,3 @@ void loop()
   }
 }
 
-void ledOn()
-{
-  digitalWrite(LED_BUILTIN, HIGH);
-}
-
-void ledOff()
-{
-  digitalWrite(LED_BUILTIN, LOW);
-}

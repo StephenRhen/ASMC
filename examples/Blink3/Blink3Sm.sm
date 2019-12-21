@@ -7,7 +7,6 @@
 %event COUNT TIMEOUT
 
 %state led_off led_blink_on led_blink_off 
-
 %start led_off
 
 %{
@@ -25,7 +24,7 @@ led_off
    COUNT led_blink_on
      %{
         blink_cnt = data;
-     %} ;
+     %}
 }
 
 led_blink_on
@@ -41,8 +40,8 @@ led_blink_on
     digitalWrite(LED_BUILTIN, LOW);
   %}
 {
-  TIMEOUT [ blink_cnt == 0 ] led_off;
-  TIMEOUT led_blink_off;
+  TIMEOUT [ blink_cnt == 0 ] led_off,
+  TIMEOUT led_blink_off
 }
 
 led_blink_off
@@ -55,7 +54,7 @@ led_blink_off
     stopTimer();
   %}
 {
-  TIMEOUT led_blink_on;
+  TIMEOUT led_blink_on
 }
 
 

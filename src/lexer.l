@@ -77,16 +77,15 @@
 <guard>.         { *code_ptr++ = yytext[0]; }
 
 
-%event            return EVENT;
-%state            return STATE;
+    /* Keywords */
+%class            return CLASS;
 %entry            return ENTRY;
+%event            return EVENT;
 %exit             return EXIT;
 %start            return START;
+%state            return STATE;
 
-\%class          printf("<class>");
-\%map            printf("<map>");
 
-                 /* Keywords */
 Default          printf("<default>");
 nil              return NIL;
 push             return PUSH;

@@ -1,25 +1,23 @@
 
 %{
-   #include "Led2.h"
+#include <Arduino.h>
 %}
 
 %event BUTTON_PRESSED
-
 %state led_on led_off
-
+%class Led2Sm
 %start led_off
 
 %%
-
 led_on
 {
-   BUTTON_PRESSED led_off;
+   BUTTON_PRESSED led_off
 }
 
 led_off
-  %entry %{ ledOff(); %}
-  %exit  %{ ledOn(); %}
+  %entry %{ digitalWrite(LED_BUILTIN, LOW); %} 
+  %exit  %{ digitalWrite(LED_BUILTIN, HIGH); %}
 {
-  BUTTON_PRESSED led_on;
+  BUTTON_PRESSED led_on
 }
 

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="38cm" height="26cm" viewBox="160 68 749 511" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="161.5" y="69.8044" width="746.5" height="508.196"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="161.5" y="69.8044" width="746.5" height="508.196"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="534.75" y="327.777">
+      <tspan x="534.75" y="327.777"></tspan>
+    </text>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="450" y="350">
+    <tspan x="450" y="350"></tspan>
+  </text>
+  <g>
+    <g>
+      <ellipse style="fill: #ffffff" cx="301.433" cy="325.868" rx="79.0673" ry="77.9358"/>
+      <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="301.433" cy="325.868" rx="79.0673" ry="77.9358"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="301.433" y="329.743">
+        <tspan x="301.433" y="329.743"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="301.432" y="325.868">
+      <tspan x="301.432" y="325.868">led_off</tspan>
+    </text>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 384.179,296.891 A 373.92,373.92 0 0 0 634.018,224.76"/>
+    <polygon style="fill: #000000" points="376.707,296.267 387.157,292.292 384.169,297.017 386.157,302.242 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="376.707,296.267 387.157,292.292 384.169,297.017 386.157,302.242 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="503.5" y="158.685">
+    <tspan x="503.5" y="158.685">BUTTON_PRESSED</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 624.369,163.842 A 310.291,310.291 0 0 0 354.342,268.76"/>
+    <polygon style="fill: #000000" points="631.806,164.785 621.183,168.272 624.386,163.69 622.643,158.379 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="631.806,164.785 621.183,168.272 624.386,163.69 622.643,158.379 "/>
+  </g>
+  <g>
+    <g>
+      <ellipse style="fill: #ffffff" cx="705.567" cy="457.436" rx="79.0673" ry="77.9358"/>
+      <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="705.567" cy="457.436" rx="79.0673" ry="77.9358"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="705.567" y="461.311">
+        <tspan x="705.567" y="461.311"></tspan>
+      </text>
+    </g>
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="706.066" y="437.436">
+      <tspan x="706.066" y="437.436">startTimer(500);</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="706.5" y="413.154">
+      <tspan x="706.5" y="413.154">led_blink_off</tspan>
+    </text>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="631.5" y1="457.436" x2="705.567" y2="457.436"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="779.634" y1="457.436" x2="705.567" y2="457.436"/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 676.81,266.94 A 86.4078,86.4078 0 0 0 669.166,377.939"/>
+    <polygon style="fill: #000000" points="673.797,383.785 663.351,379.802 668.724,378.261 670.715,373.038 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="673.797,383.785 663.351,379.802 668.724,378.261 670.715,373.038 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 735.826,385.432 A 97.7663,97.7663 0 0 0 742.713,275.007"/>
+    <polygon style="fill: #000000" points="738.659,268.736 748.633,273.786 743.128,274.758 740.603,279.746 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="738.659,268.736 748.633,273.786 743.128,274.758 740.603,279.746 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="760.5" y="325.154">
+    <tspan x="760.5" y="325.154">TIMEOUT</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="592.5" y="326.154">
+    <tspan x="592.5" y="326.154">TIMEOUT</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 382.016,361.856 A 322.068,322.068 0 0 0 632.518,427.612"/>
+    <polygon style="fill: #000000" points="376.191,357.136 387.059,359.761 381.924,361.971 380.611,367.405 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="376.191,357.136 387.059,359.761 381.924,361.971 380.611,367.405 "/>
+  </g>
+  <g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="505.25" y="254.623">
+      <tspan x="505.25" y="254.623">BUTTON_PRESSED\</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="498.95" y="270.748">
+      <tspan x="498.95" y="270.748">stopTimer();</tspan>
+    </text>
+  </g>
+  <g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="529.55" y="393.723">
+      <tspan x="529.55" y="393.723">BUTTON_PRESSED\</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="523.25" y="409.848">
+      <tspan x="523.25" y="409.848">stopTimer();</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <ellipse style="fill: #ffffff" cx="707.067" cy="194.936" rx="79.0673" ry="77.9358"/>
+      <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="707.067" cy="194.936" rx="79.0673" ry="77.9358"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="707.067" y="198.811">
+        <tspan x="707.067" y="198.811"></tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="708" y="147.616">
+      <tspan x="708" y="147.616">led_blink_on</tspan>
+    </text>
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="707.5" y="215.116">
+      <tspan x="707.5" y="215.116">digitalWrite(LED_BUILTIN, LOW);</tspan>
+    </text>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="633" y1="194.936" x2="707.068" y2="194.936"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="781.134" y1="194.936" x2="707.068" y2="194.936"/>
+    <g>
+      <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="710.9" y="175.935">
+        <tspan x="710.9" y="175.935">startTimer(500);</tspan>
+      </text>
+      <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="710.9" y="187.048">
+        <tspan x="710.9" y="187.048">digitalWrite(LED_BUILTIN, HIGH);</tspan>
+      </text>
+    </g>
+  </g>
+</svg>
