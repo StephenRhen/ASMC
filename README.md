@@ -31,14 +31,17 @@ would be most appreciated.
 
 ### System Requirements
 * GNU utilities gcc, make, bison and flex
-* [Arduin0-Makefile v1.6.0](https://github.com/sudar/Arduino-Makefile/releases/tag/1.6.0)
+* [Arduino-Makefile v1.6.0](https://github.com/sudar/Arduino-Makefile/releases/tag/1.6.0)
 
-1) Down load the repository and edit 'config.mk' to set SRCDIR and
+### Setup
+Down load the repository and edit 'config.mk' to set SRCDIR and
 USR_LIB_PATH. Select the other variables as appropriate for your OS type. 
 You may need to adjust some of the other variables based on your
 local configuration.
 
-2) Run 'make' in the top level project directory to build the compiler and
-all of the example scripts.
+### Building
+Run **make** in the top level project directory to build the compiler and
+all of the example scripts. If you don't wish to build the examples change
+to the **src** directory and run **make** 
 
 
