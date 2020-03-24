@@ -6,14 +6,14 @@ SRCDIR = /home/srhen/Documents/Projects/StateMachines/ASMC
 USER_LIB_PATH = /home/srhen/Documents/Arduino/libraries
 
 # Paths for GNU-Linux
-ADRUINO_DIR = /usr/share/arduino
-AVR_TOOLS_DIR = /usr
-ARDMK_DIR = /usr/share/arduino
+ARDUINO_DIR = /home/srhen/src/arduino-1.8.10
+# AVR_TOOLS_DIR = /home/srhen/src/arduino-1.8.10/hardware/tools/avr
+ARDMK_DIR = /home/srhen/src/Arduino-Makefile-1.6.0
 
 # Optional on GNU-Linux to use avrdude that came with system, rather
 # than the version that cam with Arduino.
-AVRDUDE = /usr/bin/avrdude
-AVRDUDE_CONF = /etc/avrdude.conf
+# AVRDUDE = /usr/bin/avrdude
+# AVRDUDE_CONF = /etc/avrdude.conf
 
 # Paths for Windows
 # ARDUINO_DIR   = C:/Arduino
