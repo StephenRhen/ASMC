@@ -29,6 +29,10 @@ would be most appreciated.
 
 ## Installation
 
+### System Requirements
+* GNU utilities gcc, make, bison and flex
+* [Arduin0-Makefile v1.6.0](https://github.com/sudar/Arduino-Makefile/releases/tag/1.6.0)
+
 1) Down load the repository and edit 'config.mk' to set SRCDIR and
 USR_LIB_PATH. Select the other variables as appropriate for your OS type. 
 You may need to adjust some of the other variables based on your
